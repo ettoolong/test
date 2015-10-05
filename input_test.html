@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="zh-TW">
+  <head>
+    <title>Input test</title>
+    <script>
+        var inputA;
+        var inputB;
+        var compositionStart = false;
+        
+        function composition_start(e) {
+            compositionStart = true;
+        }
+
+        function composition_end(e) {
+            if(compositionStart) {
+                compositionStart = false;
+                var text = e.target.value;
+                e.target.value = '';
+                inputB.value+=text;
+            }
+        }
+        
+        function text_input(e) {
+            if(!compositionStart) {
+                e.stopPropagation();
+                e.preventDefault();
+                var text = e.target.value;
+                if(text) {
+                    e.target.value = '';
+                    inputB.value+=text;
+                }
+            }
+        }
+
+        function startup() {
+            inputA = document.getElementById('inputA');
+            inputB = document.getElementById('inputB');
+            
+            inputA.addEventListener('compositionstart', composition_start, false);
+            inputA.addEventListener('compositionend', composition_end, false);
+            inputA.addEventListener('input', text_input, true);
+        }
+        window.addEventListener('load', startup, true);
+        
+    </script>
+  </head>
+  <body>	  
+	  <pre>
+	  This issue is for Forefox 41 windows platform.
+	  Test step:
+	  (1) Type something in input A, It will show in Input B.
+	  (2) Type Chinese in input A, you can select word. It will show in Input B after you finish typing.
+	  (3) Type Chinese in input A again, you can't' select word.<BR>
+      input A:<input id='inputA' style='width:500px'/><BR>
+      input B:<input id='inputB' style='width:500px'/>
+	  </pre>
+  </body>
+</html>
