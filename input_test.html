@@ -6,42 +6,42 @@
   <head>
     <title>Input test</title>
     <script>
-        var inputA;
-        var inputB;
+        var input;
+        var output;
         var compositionStart = false;
         
         function composition_start(e) {
+			//start input Chinese, set 'compositionStart' flag true
             compositionStart = true;
         }
 
         function composition_end(e) {
+			//stop input Chinese, set 'compositionStart' flag false
             if(compositionStart) {
                 compositionStart = false;
-                var text = e.target.value;
-                e.target.value = '';
-                inputB.value+=text;
+                var text = e.target.value; //get Chinese text
+				if(text) {
+                	e.target.value = ''; //clear input field
+                	output.innerHTML+=('you type: ' + text + '\n'); //show text in output
+				}
             }
         }
         
         function text_input(e) {
-            if(!compositionStart) {
+            if(!compositionStart) { //if not typing Chinese...
                 e.stopPropagation();
                 e.preventDefault();
-                var text = e.target.value;
-                if(text) {
-                    e.target.value = '';
-                    inputB.value+=text;
-                }
+                e.target.value = ''; //clear input field
             }
         }
 
         function startup() {
-            inputA = document.getElementById('inputA');
-            inputB = document.getElementById('inputB');
+            input = document.getElementById('input');
+            output = document.getElementById('output');
             
-            inputA.addEventListener('compositionstart', composition_start, false);
-            inputA.addEventListener('compositionend', composition_end, false);
-            inputA.addEventListener('input', text_input, true);
+            input.addEventListener('compositionstart', composition_start, false);
+            input.addEventListener('compositionend', composition_end, false);
+            input.addEventListener('input', text_input, true);
         }
         window.addEventListener('load', startup, true);
         
@@ -51,11 +51,10 @@
 	  <pre>
 	  This issue is for Forefox 41 windows platform.
 	  Test step:
-	  (1) Type something in input A, It will show in Input B.
-	  (2) Type Chinese in input A, you can select word. It will show in Input B after you finish typing.
-	  (3) Type Chinese in input A again, you can't' select word.<BR>
-      input A:<input id='inputA' style='width:500px'/><BR>
-      input B:<input id='inputB' style='width:500px'/>
+	  (1) Type Chinese in Input, you can select word. It will show in Output after you finish typing.
+	  (2) Type Chinese in Input again, you can't' select word.<BR>
 	  </pre>
+      Input <input id='input' style='width:500px'/><BR><BR>
+      Output <pre id='output'/>
   </body>
 </html>
