@@ -12,11 +12,13 @@
         
         function composition_start(e) {
 			//start input Chinese, set 'compositionStart' flag true
+			console.log('composition_start');
             compositionStart = true;
         }
 
         function composition_end(e) {
 			//stop input Chinese, set 'compositionStart' flag false
+			console.log('composition_end');
             if(compositionStart) {
                 compositionStart = false;
                 var text = e.target.value; //get Chinese text
@@ -26,14 +28,6 @@
 				}
             }
         }
-        
-        function text_input(e) {
-            if(!compositionStart) { //if not typing Chinese...
-                e.stopPropagation();
-                e.preventDefault();
-                e.target.value = ''; //clear input field
-            }
-        }
 
         function startup() {
             input = document.getElementById('input');
@@ -41,7 +35,6 @@
             
             input.addEventListener('compositionstart', composition_start, false);
             input.addEventListener('compositionend', composition_end, false);
-            input.addEventListener('input', text_input, true);
         }
         window.addEventListener('load', startup, true);
         
