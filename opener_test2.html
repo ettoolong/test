@@ -3,17 +3,18 @@
 <head>
 <title>HTML DOM DEMO</title>
 <script>
-function run1() {
+function run() {
   document.getElementById('show').innerHTML = 'window.opener.location.href = ' + window.opener.location.href;
-}
-function run2() {
-  document.getElementById('show').innerHTML = 'window.parent.location.href = ' + window.parent.location.href;
 }
 </script>
 </head>
 <body>
-<input type="button" value="RUN" onclick="run1();">
-<input type="button" value="RUN" onclick="run2();">
+<pre>
+function run() {
+  document.getElementById('show').innerHTML = 'window.opener.location.href = ' + window.opener.location.href;
+}
+</pre>
+<input type="button" value="RUN" onclick="run();">
 <div><span id="show"></span></div>
 </body>
 </html>
