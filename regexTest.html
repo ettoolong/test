@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="zh-TW">
+  <head>
+    <title>Regex test</title>
+    <script>
+        function startup() {
+            var ta1 = document.getElementById('ta1');
+            ta1.value = "";
+            ta1.value += "      aaaaaaaa\n";
+            ta1.value += "bbbbbb     \n";
+            ta1.value += "   cccccccc   \n";
+            ta1.value += "  ddddddd  \n\n";
+            ta1.value += "eeeeee\n\n\n";
+            ta1.value += " ff \n";
+        }
+        window.addEventListener('load', startup, true);
+
+        function run() {
+          var ta1 = document.getElementById('ta1');
+          var ta2 = document.getElementById('ta2');
+          var v1 = ta1.value;
+          ta2.value = v1.replace(/^\s+|\s+$/gm,'');
+        }
+    </script>
+  </head>
+  <body>
+      <textarea id="ta1" style="width:300px;height:250px;">
+      </textarea><BR>
+      <input type="button" value="replace(/^\s+|\s+$/gm,'')" onclick="run();"><BR>
+      <textarea id="ta2" style="width:300px;height:250px;">
+      </textarea>
+  </body>
+</html>
