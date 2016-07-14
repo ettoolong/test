@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="zh-TW">
+  <head>
+    <title>nbsp & space test</title>
+    <style>
+      div {
+        white-space: pre;
+      }
+    </style>
+    <script>
+        function startup() {
+            var divA = document.getElementById('testA');
+            var divB = document.getElementById('testB');
+
+            var a = '\\U0020\u0020\u0020\u0020\\U0020';
+            var b = 'NBSP&nbsp;&nbsp;&nbsp;NBSP';
+
+            var dp = new DOMParser();
+            var doc = dp.parseFromString(a, 'text/html');
+            divA.appendChild(doc.body.firstChild);
+            doc = dp.parseFromString(b, 'text/html');
+            divB.appendChild(doc.body.firstChild);
+        }
+        window.addEventListener('load', startup, true);
+    </script>
+  </head>
+  <body>
+    <div id="testA">
+    </div>
+    <div id="testB">
+    </div>
+  </body>
+</html>
