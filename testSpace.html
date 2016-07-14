@@ -10,27 +10,10 @@
         white-space: pre;
       }
     </style>
-    <script>
-        function startup() {
-            var divA = document.getElementById('testA');
-            var divB = document.getElementById('testB');
-
-            var a = '\\U0020\u0020\u0020\u0020\\U0020';
-            var b = 'NBSP&nbsp;&nbsp;&nbsp;NBSP';
-
-            var dp = new DOMParser();
-            var doc = dp.parseFromString(a, 'text/html');
-            divA.appendChild(doc.body.firstChild);
-            doc = dp.parseFromString(b, 'text/html');
-            divB.appendChild(doc.body.firstChild);
-        }
-        window.addEventListener('load', startup, true);
-    </script>
   </head>
   <body>
-    <div id="testA">
-    </div>
-    <div id="testB">
+    <div>\U0020   \U0020</div>
+    <div>NBSP&nbsp;&nbsp;&nbsp;NBSP</div>
     </div>
   </body>
 </html>
