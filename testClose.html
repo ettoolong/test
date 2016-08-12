@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>HTML DOM DEMO</title>
+<title>test beforeunload</title>
 <script>
-window.addEventListener('beforeunload', function(){
+window.addEventListener('beforeunload', function(event){
     console.log('test');
+    event.returnValue = true;
+    return document.title;
 }, false);
 
 </script>
