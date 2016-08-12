@@ -12,6 +12,12 @@ window.addEventListener('beforeunload', function(event){
 </script>
 </head>
 <body>
-test
+<pre>
+window.addEventListener('beforeunload', function(event){
+    console.log('test');
+    event.returnValue = true;
+    return document.title;
+}, false);
+</pre>
 </body>
 </html>
